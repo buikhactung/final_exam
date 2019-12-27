@@ -1,0 +1,22 @@
+<h3>Danh sách đọc</h3>
+<input placeholder="Add new book" [(ngModel)]="newBook"/>
+<br>
+<br>
+<button (click)="addBook()">Add the new book</button>
+<br>
+<br>
+<select [(ngModel)]="filterStatus">
+  <option value="XEM_TAT_CA">Xem tất cả</option>
+  <option value="XEM_DA_DOC">Xem sách đã đọc</option>
+  <option value="XEM_CHUA_NHO">Xem sách chưa đọc</option>
+
+</select>
+<div *ngFor="let book of listBook" >
+<div class="book" *ngIf="filterStatus === 'XEM_TAT_CA' || (filterStatus === 'XEM_DA_DOC' && book.read) || (filterStatus === 'XEM_CHUA_DOC' && !book.read)">
+  <h4>Name:</h4>
+  {{book.name}}
+  <h4>Status:</h4>
+<!--  {{book.read}}-->
+  <button (click)="book.read = !book.read"> {{book.read ? 'Đã đọc': 'Chưa đọc'}}</button>
+</div>
+</div>
